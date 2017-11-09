@@ -1,26 +1,38 @@
-{{#if_eq build "standalone"}}
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-{{/if_eq}}
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import App from './App'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-{{#router}}
-import router from './router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-{{/router}}
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import VueI18n from 'vue-i18n'
+import { mapGetters } from 'vuex'
+import store from './store'
+import 'bootstrap'
 
-Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use( VueI18n )
+
+// i18n
+const messages = {
+  'en-US': require('./i18n/en.json'),
+  'zh-TW': require('./i18n/tw.json')
+};
+
+Vue.config.productionTip = false
+
+//console.log('lang is %s', store.state.lang);
+const i18n = new VueI18n({
+  locale: 'zh-TW',
+  silentTranslationWarn: true,
+  messages
+});
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  {{#router}}
   router,
-  {{/router}}
-  {{#if_eq build "runtime"}}
-  render: h => h(App){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  {{/if_eq}}
-  {{#if_eq build "standalone"}}
+  store,
+  i18n,
   template: '<App/>',
-  components: { App }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  {{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  components: { App }
+})
+
