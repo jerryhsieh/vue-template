@@ -1,50 +1,15 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '@/components/Home'
-import Login from '@/components/Login'
-import Hello from '@/components/Hello'
-import store from '../store'
+import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import HelloWorld from '@/components/HelloWorld'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
-Vue.use(Router)
+Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
-const router =  new Router({
+export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/hello',
       name: 'Hello',
-      component: Hello,
-      meta: {
-        authorization: true
-      }
-    }
-  ]
-})
-
-router.beforeEach((to, from, next) => {
-  //log(`Router beforeEach to: ${to.path} from: ${from.path}`);
-  if (to.matched.some(record => record.meta.authorization || false)) {
-    const isLogin = store.getters.isLogin;
-    if (isLogin) {
-      next();
-    } else {
-      next({ path: '/login', query: { redirect: to.fullpath}});
-     }
-    
-  } else {
-    next();
-  }
-})
-
-export default router;
-
-
+      component: HelloWorld{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  ]{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}

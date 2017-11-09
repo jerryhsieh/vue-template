@@ -1,45 +1,34 @@
 <template>
   <div id="app">
-    <Navbar v-if="!isLogin"></Navbar>
-    <Userbar v-else></Userbar>
+    <img src="./assets/logo.png">
+    {{#router}}
     <router-view/>
+    {{else}}
+    <HelloWorld/>
+    {{/router}}
   </div>
 </template>
 
 <script>
- import Navbar from './navbar/Navbar.vue';
- import Userbar from './navbar/Userbar.vue';
- import { mapActions, mapGetters } from 'vuex';
- 
- export default {
-   name: 'app',
-   computed: {
-     ...mapGetters(['username', 'isLogin'])
-   },
-   methods: {
-     ...mapActions(['refresh']),
-   },
-   components: { Navbar, Userbar },
-   created: function() {
-     this.refresh()
-         .then(res => {
-           console.log(res);
-           this.$router.replace('/hello');  // welcome member
-         })
-         .catch(err => {
-           this.$router.replace('/');     // default to home dir
-         })
-   }
- }
+{{#unless router}}
+import HelloWorld from './components/HelloWorld'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+{{/unless}}
+export default {
+  name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
+  components: {
+    HelloWorld{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
-<style lang="scss">
- @import '~bootstrap/scss/bootstrap';
-
- #app {
-   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-
- }
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
