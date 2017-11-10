@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #FCC327;">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-color">
     <router-link to="/" class="navbar-brand">{{$t("Money")}}</router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -53,8 +53,14 @@
  }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
+ @import '~styles/base';
+ 
+ .nav-color {
+   background-color: $userbar-bg-color;
+ }
+ 
  .brand {
    color: rgba(0,0,0,0.9);
    text-decoration: none;

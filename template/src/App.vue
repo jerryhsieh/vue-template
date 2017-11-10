@@ -3,14 +3,14 @@
     <Navbar v-if="!isLogin"></Navbar>
     <Userbar v-else></Userbar>
     <router-view/>
-  </div>
+   </div>
 </template>
 
 <script>
  import Navbar from './navbar/Navbar.vue';
  import Userbar from './navbar/Userbar.vue';
  import { mapActions, mapGetters } from 'vuex';
- 
+
  export default {
    name: 'app',
    computed: {
@@ -34,7 +34,7 @@
 </script>
 
 <style lang="scss">
- @import '~bootstrap/scss/bootstrap';
+@import './assets/scss/app.scss';
 
  #app {
    font-family: 'Avenir', Helvetica, Arial, sans-serif;
