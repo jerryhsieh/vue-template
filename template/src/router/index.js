@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Hello from '@/components/Hello'
+import Subscribe from '@/components/Subscribe'
 import store from '../store'
 
 Vue.use(Router)
@@ -26,7 +27,16 @@ const router =  new Router({
       meta: {
         authorization: true
       }
-    }
+    },
+    {
+      path: '/subscribe',
+      name: 'Subscribe',
+      component: Subscribe,
+      meta: {
+        authorization: true
+      }
+    },
+    
   ]
 })
 
