@@ -4,7 +4,7 @@ import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Hello from '@/components/Hello'
 import Subscribe from '@/components/Subscribe'
-import store from '../store'
+import store from '@/store'
 
 Vue.use(Router)
 
@@ -42,11 +42,13 @@ const router =  new Router({
 
 router.beforeEach((to, from, next) => {
   //log(`Router beforeEach to: ${to.path} from: ${from.path}`);
-  if (to.matched.some(record => record.meta.authorization || false)) {
-    const isLogin = store.getters.isLogin;
+  if (to.matched.some(record => record.meta.authorization)) {
+    //console.log('need auth');
+    const isLogin = store.dispatch('isLogin');
     if (isLogin) {
       next();
     } else {
+      console.log('need login');
       next({ path: '/login', query: { redirect: to.fullpath}});
      }
     

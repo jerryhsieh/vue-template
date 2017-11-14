@@ -4,6 +4,7 @@ import axios from 'axios';
 import login from './modules/login';
 import api from './modules/api';
 import lang from './modules/lang';
+import masters from './modules/masters';
 
 import utils from '../helpers';
 
@@ -21,7 +22,8 @@ export default new Vuex.Store({
   modules: {
     login,
     api,
-    lang
+    lang,
+    masters
   }
 })
 

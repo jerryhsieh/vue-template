@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light nav-color">
+  <nav class="navbar navbar-expand-sm navbar-light nav-color">
     <router-link to="/" class="navbar-brand">{{$t("Money")}}</router-link>    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -49,5 +49,9 @@
 
  .nav-color {
    background-color: $navbar-bg-color;
+ }
+
+ .nav-link {
+   font-size: 0.8rem !important;
  }
 </style>

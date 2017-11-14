@@ -1,3 +1,6 @@
+import decode from 'jwt-decode';
+
+const TOKEN = 'token';
 
 const emptyPromise = function() {
   return new Promise((resolve) => {resolve(null);})
@@ -39,11 +42,26 @@ const writeToken = function (isLocal, token, value) {
   }
 }
 
+function getTokenExpirationDate(encodedToken) {
+  const token = decode(encodedToken);
+  if (!token.exp) { return null; }
+
+  const date = new Date(0);
+  date.setUTCSeconds(token.exp);
+
+  return date;
+}
+
+const isTokenExpired = function(token) {
+  const expirationDate = getTokenExpirationDate(token);
+  return expirationDate < new Date();
+}
+
+
 const jwt = function(token) {
   let tokenVal = this.getToken(token);
   return {headers: {Authorization: 'Bearer ' + tokenVal}};
 }
-
 
 export default {
   emptyPromise: emptyPromise,
@@ -51,6 +69,8 @@ export default {
   removeToken: removeToken,
   writeToken: writeToken,
   getToken: getToken,
-  jwt: jwt
+  isTokenExpired: isTokenExpired,
+  jwt: jwt,
+  TOKEN: TOKEN
 }
 

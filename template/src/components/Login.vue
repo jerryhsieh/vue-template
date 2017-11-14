@@ -43,8 +43,9 @@
        if (this.validateName || this.validatePassword) event.preventDefault();
        const {username, password} = this;
        const result = await this.login({username, password});
-       console.log(result);
+       //console.log(result);
        if (result.success) {
+         console.log('login success');
          const redirect = this.$route.query.redirect || '/hello';
          this.$router.replace(redirect);
        }
@@ -52,7 +53,7 @@
          alert('error in login');
        }
 
-     }
+     },
    },
    data: function() {
      return {

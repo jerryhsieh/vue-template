@@ -20,7 +20,7 @@
      ...mapActions(['refresh']),
    },
    components: { Navbar, Userbar },
-   created: function() {
+   created() {
      this.refresh()
          .then(res => {
            console.log(res);

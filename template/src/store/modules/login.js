@@ -1,8 +1,7 @@
 import axios from 'axios';
 import api from './api';
-import utils from '../../helpers/utils.js';
+import utils from '@/helpers/utils.js';
 
-const TOKEN = 'token';
 
 const state = {
   showLoading: false,
@@ -37,11 +36,11 @@ const actions = {
   showLoading ( { commit }, value) {
     commit('showLoading', value);
   },
-  refresh({ commit, state }) {
-    if (utils.isTokenExist(TOKEN)) {
+  refresh({ dispatch, commit, state }) {
+    if (dispatch('isLogin')) {
       return new Promise((resolve, reject) => {
-        let token = utils.getToken(TOKEN);
-        axios.post(api.state.apiUrl + '/users/currentUser', { 'token': token }, utils.jwt(TOKEN) )
+        let token = utils.getToken(utils.TOKEN);
+        axios.post(api.state.apiUrl + '/users/currentUser', { 'token': token }, utils.jwt(utils.TOKEN) )
              .then(res => {
                //console.log(res);
                commit('isLogin', true);
@@ -59,18 +58,27 @@ const actions = {
     }
   },
   logout({ commit, state})  {
-    utils.removeToken('token');
+    utils.removeToken(utils.TOKEN);
     commit('isLogin', false);
     commit('username', '');
   },
+  isLogin({dispatch, commit, state}) {
+    const idToken = utils.getToken(utils.TOKEN);
+    if (!idToken || utils.isTokenExpired(idToken)) {
+      console.log('no token or token expired');
+      dispatch('logout');
+      return false;
+    } else {
+      return true;
+    }
+  },
   login ( { commit,state }, { username, password }) {
-    var self = this;
     return new Promise( (resolve, reject) => {
       commit('showLoading', true);
       axios.post(api.state.apiUrl + '/users/authenticate', {username: username, password, password})
            .then(res => {
              if (res.data.success) {
-               console.log('in success status');
+               //console.log('in success status');
                commit('username', username);
                commit('isLogin', true);
                utils.writeToken(true, 'token', res.data.token);
