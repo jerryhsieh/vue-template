@@ -1,9 +1,9 @@
 const state = {
-  lang: 'zh-TW'
+
 }
 
 const getters = {
-  lang: state => state.lang
+
 }
 
 const mutations = {
@@ -14,9 +14,6 @@ const mutations = {
 }
 
 const actions = {
-    setLanguage( { commit }, lang) {
-      commit('setLanguage', lang);
-    }  
 }
 
 export default  {

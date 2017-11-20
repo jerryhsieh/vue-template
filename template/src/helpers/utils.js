@@ -6,7 +6,7 @@ const emptyPromise = function() {
   return new Promise((resolve) => {resolve(null);})
 }
 
-const isTokenExist = function(token) {
+const isTokenExist = function(token = TOKEN) {
   if (localStorage.getItem(token)) {
     return true;
   } else if (sessionStorage.getItem(token)) {
@@ -16,7 +16,7 @@ const isTokenExist = function(token) {
   }
 }
 
-const getToken = function(token) {
+const getToken = function(token = TOKEN) {
   if (localStorage.getItem(token)) {
     return localStorage.getItem(token);
   } else if (sessionStorage.getItem(token)) {
@@ -26,7 +26,7 @@ const getToken = function(token) {
   }
 }
 
-const removeToken = function(token) {
+const removeToken = function(token = TOKEN) {
   if (localStorage.getItem(token)) {
     localStorage.removeItem(token);
   } else if (sessionStorage.getItem(token)){
@@ -34,7 +34,7 @@ const removeToken = function(token) {
   }
 }
 
-const writeToken = function (isLocal, token, value) {
+const writeToken = function (isLocal, token = TOKEN, value) {
   if (isLocal)  {
     localStorage.setItem(token, value);
   } else {
@@ -58,7 +58,7 @@ const isTokenExpired = function(token) {
 }
 
 
-const jwt = function(token) {
+const jwt = function(token = TOKEN) {
   let tokenVal = this.getToken(token);
   return {headers: {Authorization: 'Bearer ' + tokenVal}};
 }

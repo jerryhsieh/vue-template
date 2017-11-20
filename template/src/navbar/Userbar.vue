@@ -20,13 +20,13 @@
     </div>
     <ul class="navbar-nav ml-auto mr-3">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle user" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{username}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> {{$t("admin")}}</a>
-          <a class="dropdown-item" href="#"><i class="fa fa-user fa-fw" aria-hidden="true"></i> {{$t("account")}}</a>
-          <a class="dropdown-item" role="button" @click="click"><i class="fa fa-sign-out fa-fw"></i> {{loginLabel}}</a>
+          <router-link to="/admin" class="dropdown-item"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> {{$t("admin")}}</router-link>
+          <router-link to="/" class="dropdown-item"><i class="fa fa-user fa-fw" aria-hidden="true"></i> {{$t("account")}}</router-link>
+          <button class="dropdown-item btn btn-outline-primary" type="button" @click="click"><i class="fa fa-sign-out fa-fw"></i> {{loginLabel}}</button>
         </div>
       </li>
     </ul>
@@ -83,5 +83,13 @@
 .navbar-brand, .nav-link {
    font-size: 0.9rem;
  }
- 
+
+ .user {
+   min-width: 5rem;
+ }
+
+ .dropdown-menu button {
+   cursor: pointer;
+   border: none;
+ }
 </style>

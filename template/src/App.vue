@@ -1,32 +1,28 @@
 <template>
   <div id="app">
-    <Navbar v-if="!isLogin"></Navbar>
-    <Userbar v-else></Userbar>
-    <router-view/>
+    <router-view name="topbar"></router-view>
+    <router-view name="sidebar"></router-view>
+    <router-view></router-view>
    </div>
 </template>
 
 <script>
- import Navbar from './navbar/Navbar.vue';
- import Userbar from './navbar/Userbar.vue';
  import { mapActions, mapGetters } from 'vuex';
 
  export default {
    name: 'app',
-   computed: {
-     ...mapGetters(['username', 'isLogin'])
-   },
    methods: {
      ...mapActions(['refresh']),
    },
-   components: { Navbar, Userbar },
+   //components: { Navbar, Userbar },
    created() {
      this.refresh()
          .then(res => {
-           console.log(res);
+           //console.log('in App',res);
            this.$router.replace('/hello');  // welcome member
          })
          .catch(err => {
+           //console.error(err);
            this.$router.replace('/');     // default to home dir
          })
    }

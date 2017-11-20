@@ -6,7 +6,7 @@ import router from './router'
 import VueI18n from 'vue-i18n'
 import { mapGetters } from 'vuex'
 import store from './store'
-import 'bootstrap'
+import 'bootstrap/dist/js/bootstrap.min.js'
 
 Vue.use( VueI18n )
 

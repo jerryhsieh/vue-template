@@ -27,10 +27,14 @@
 
 <script>
  import {mapGetters, mapActions} from 'vuex';
+ import api from '@/services/api.js';
  export default {
    name: 'Subscribe',
    computed: {
-     ...mapGetters(['masters', 'publicUrl'])
+     ...mapGetters(['masters']),
+     publicUrl() {
+       return api.state.publicUrl;
+     }
    },
    methods: {
      ...mapActions(['getMastersFromServer']),
@@ -46,7 +50,8 @@
      
    },
    created() {
-     if (this.masters.length === 0) {
+     // if no masters in store, fetch from server
+     if (this.masters.length === 0) {   
        this.getMaster();
      }
    },

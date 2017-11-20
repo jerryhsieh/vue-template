@@ -1,9 +1,33 @@
 // this is partial scss called by app.scss
+// White
+$lead-white: #DCDBD6;
+$white-wash: #F2F1CC;
+$isabelline: #F4F0E7;      
+$chalk: #F3F2F2;
+
+// Yellow
+$blonde: #FAF0BE;          // 亞麻金
+$lead-tin-yellow: #FFE64A;
+$indian-yellow: #E3A857;
+$acid-yellow: #E7F219;
+$naples-yellow: #FADA5E;
+$chrome-yellow: #FFA700;   // 鉻黃
+$gamboge: #E49B0F;         // 藤黃
+$orpiment: #F2B639;        // 雌黃
+$imperial-yellow: #FADA5E; // 帝國黃
+$gold: #FFD700;
+
+
+
+// google colors
+$google-green: #3CBA54;
+$google-yellow: #F4C20D;
+$google-red: #DB3236;
+$google-blue: #4885ED;
 
 $main-bg-color: #919890;
-$navbar-bg-color: #81D4F4;
+//$navbar-bg-color: #81D4F4;
+$navbar-bg-color: gold;
 $userbar-bg-color: #FCC327;
 
-$isabelline: #F4F0E7 !default;
-$chalk: #F3F2F2 !default;
 
